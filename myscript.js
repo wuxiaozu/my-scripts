@@ -1,1 +1,40 @@
-(function(){const _0x=function(s){return window.atob(s)};const _1=['Y2hlY2tlZA==','cXVlcnlTZWxlY3RvckFsbA==','LnN3aXRjaC1idG4td2Fybg==','5peg5q2k6aG5','NA==','MTU=','MjA=','MjE=','MjQ=','MjU=','Mzc=','NDA=','NDI=','NDM=','NTM=','NjM=','NjQ=','Zm9yRWFjaA==','Y2VsbHM=','aW5uZXJUZXh0','dHJpbQ==','aW5jbHVkZXM=','ZmluZA==','bG9n','5q2j5Zyo5bCd6K+V5rex5bqm54K55Ye7Li4u','bW91c2Vkb3du','bW91c2V1cA==','Y2xpY2s=','aW5wdXQ=','Y2hhbmdl','ZGlzcGF0Y2hFdmVudA==','dGFnTmFtZQ==','SU5QVVQ='];function _c(e){if(!e)return;const evs=[_0x(_1[25]),_0x(_1[26]),_0x(_1[27]),_0x(_1[28]),_0x(_1[29])];evs[_0x(_1[17])](n=>{let v=new MouseEvent(n,{'bubbles':true,'cancelable':true,'view':window});e[_0x(_1[30])](v)});if(e[_0x(_1[31])]==_0x(_1[32])){e[_0x(_1[0])]=true}}let t=document.querySelector('#tag-xianchangjianyan')||document;let r=t[_0x(_1[1])]('tr');let ids=[_0x(_1[4]),_0x(_1[5]),_0x(_1[6]),_0x(_1[7]),_0x(_1[8]),_0x(_1[9]),_0x(_1[10]),_0x(_1[11]),_0x(_1[12]),_0x(_1[13]),_0x(_1[14]),_0x(_1[15]),_0x(_1[16])];r[_0x(_1[17])](i=>{let c=i[_0x(_1[18])];if(!c||c.length===0)return;let d=c[0][_0x(_1[19])][_0x(_1[20])]();if(ids[_0x(_1[21])](d)){let b=i.querySelector(_0x(_1[2]))||Array.from(i[_0x(_1[1])]('span,div,i,label,input'))[_0x(_1[22])](el=>el[_0x(_1[19])]==_0x(_1[3]));if(b){_c(b);b[_0x(_1[1])]('*')[_0x(_1[17])](h=>_c(h));console[_0x(_1[23])](_0x(_1[24]))}}})})();
+javascript:(function(){
+  function smartClick(el){
+    if(!el) return;
+
+    const evts = ['mousedown', 'mouseup', 'click', 'input', 'change'];
+    evts.forEach(name => {
+      let e = new MouseEvent(name, {bubbles:true, cancelable:true, view:window});
+      el.dispatchEvent(e);
+    });
+
+    if(el.tagName === 'INPUT'){
+        el.checked = true;
+    }
+  }
+
+  let table = document.querySelector("#tag-xianchangjianyan") || document;
+  let rows = table.querySelectorAll("tr");
+  let targetIds = ["4", "15", "20", "21", "24", "25", "37", "40", "42", "43", "53", "63", "64"];
+
+  rows.forEach(row => {
+    let cells = row.cells;
+    if(!cells || cells.length === 0) return;
+    let rowId = cells[0].innerText.trim();
+    
+    if(targetIds.includes(rowId)){
+
+      let btn = row.querySelector(".switch-btn-warn") || 
+                Array.from(row.querySelectorAll("span, div, i, label, input")).find(el => el.innerText === "无此项");
+
+      if(btn){
+
+        smartClick(btn);
+        let children = btn.querySelectorAll("*");
+        children.forEach(child => smartClick(child));
+        
+        console.log("序号 " + rowId + " 正在尝试深度点击...");
+      }
+    }
+  });
+})();
